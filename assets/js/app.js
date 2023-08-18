@@ -1,22 +1,25 @@
 const baseEndpoint = 'https://api.github.com';
 const usersEndpoint = `${baseEndpoint}/users`;
-const $n = document.querySelector('name');
-const $b = document.querySelector('#blog');
-const $l = document.querySelector('.location');
+/* Modificar nombre de las constantes
+para ser comprensibles y respetar el
+camelCase*/ 
+const dataName = document.querySelector('name');
+const blog = document.querySelector('#blog');
+const dataLocation = document.querySelector('.location');
 
-function displayUser(username) {
-  $n.textContent = 'cargando...';
+const displayUser = async (username) => {  //se agrego el término async
+  dataName.textContent = 'cargando...';
   const response = await fetch(`${usersEndpoint}/${username}`);
   console.log(data);
-  $n.textContent = '${data.name}';
-  $b.textContent = '${data.blog}';
-  $l.textContent = '${data.location}';
-}
+  dataName.textContent = data.name;
+  blog.textContent = data.blog;
+  dataLocation.textContent = data.location;
+} 
 
 function handleError(err) {
   console.log('OH NO!');
-  console.log(err);
-  n.textContent = `Algo salió mal: ${err}`
+  console.log(err); 
+  dataName.textContent = `Algo salió mal: ${err}`; //falta ;
 }
 
 displayUser('stolinski').catch(handleError);
